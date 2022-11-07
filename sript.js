@@ -1,41 +1,82 @@
-// let burger = document.querySelector(".burger");
-// let selection = document.querySelector(".selection-header");
-// let selectionList = document.querySelector(".item-box");
-// let selectionBox = document.querySelector(".lattice-size-box");
+let burger = document.querySelector(".burger");
+let header = document.querySelector(".modal");
+let box = document.querySelector(".lattice-size-box");
+let amontBox = document.querySelector(".amount");
+let colorBox = document.querySelector(".lettice-color-section");
+let colorArr = document.querySelectorAll(".lattice-color");
+let imgContainer = document.querySelector(".lattice-img-box");
 
-// // Header burger open/closed
-// burger.addEventListener("click", () => {
-//   // list.classList.toggle('open')
-//   burger.classList.toggle("open");
-// });
+// Burger
+burger.addEventListener("click", () => {
+  burger.classList.toggle("open");
+  header.classList.toggle("modal-open");
+});
 
-// selection.addEventListener("click", openCloseModal);
+// Selection Size
+box?.addEventListener("click", ({ target }) => {
+  if (target.closest(".selection")) {
+    let selection = target.closest(".selection");
+    let itemBox = selection.querySelector(".item-box");
 
-// selectionList.addEventListener("click", setValue);
+    itemBox.classList.toggle("item-box--open");
+    itemBox.addEventListener("click", setItemValue);
+  }
+});
 
-// function openCloseModal() {
-//   selectionList.classList.toggle("item-box--open");
-// }
+//Amount Plus Minus
+amontBox?.addEventListener("click", ({ target }) => {
+  let valueBox = document.querySelector(".count-value");
+  let value = valueBox.getAttribute("value");
 
-// function setValue(e) {
-//   if (e.target.classList.contains("selection-item")) {
-//     let selectionValue = document.querySelector(".selection-value");
-//     selectionValue.textContent = e.target.getAttribute("value");
-//     selectionList.classList.toggle("item-box--open");
-//   } else return;
-// }
+  if (target.closest(".count-plus")) {
+    value++;
+    valueBox.setAttribute("value", value);
+    valueBox.textContent = value;
+  } else if (target.closest(".count-minus") && value > 1) {
+    value--;
+    valueBox.setAttribute("value", value);
+    valueBox.textContent = value;
+  }
+});
 
-let box = document.querySelector('.lattice-size-box')
-console.log(box);
+//Checked Color
+colorBox?.addEventListener("click", ({ target }) => {
+  if (target.closest(".lattice-color")) {
+    Array.from(colorBox.children).forEach((item) => (item.textContent = ""));
 
-box.addEventListener('click', ({target}) => {
-	if(target.closest(".selection")) {
-		let selection = target.closest(".selection");
-		let itemBox = selection.querySelector('.item-box')
+    if (target.closest(".white")) {
+      target.innerHTML = `<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.5835 11.9167L8.25016 15.5833L17.4168 6.41666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      `;
+    } else {
+      target.innerHTML = `<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.5835 11.9167L8.25016 15.5833L17.4168 6.41666" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      `;
+    }
+  }
+});
 
-		itemBox.classList.toggle("item-box--open")
-	}
+// Set Big Image
+imgContainer?.addEventListener("click", ({ target }) => {
+  let bigImg = imgContainer.querySelector(".lattice-base-img");
+  let lattiseLittleImages = document.querySelectorAll(".lattice-little-img");
 
-	
-})
 
+  lattiseLittleImages.forEach(image => image.classList.remove('active-border'))
+  
+  if (target.closest(".lattice-little-img")) {
+    bigImg.setAttribute("src", target.getAttribute("data-img"));
+    target.classList.add('active-border')
+  }
+});
+
+function setItemValue({ target }) {
+  if (target.classList.contains("selection-item")) {
+    let selectionValue = target
+      .closest(".selection")
+      .querySelector(".selection-value");
+    selectionValue.textContent = target.getAttribute("value");
+  }
+}
