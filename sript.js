@@ -10,6 +10,7 @@ let imgContainer = document.querySelector(".lattice-img-box");
 burger.addEventListener("click", () => {
   burger.classList.toggle("open");
   header.classList.toggle("modal-open");
+  document.body.classList.toggle('noscroll')
 });
 
 // Selection Size
