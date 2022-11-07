@@ -282,13 +282,12 @@ header {
 /* MAIN */
 
 .first-screen-bg {
-  background-image: url("../images/main.png");
+  background-image: url("../images/main.webp");
   background-size: cover;
 }
 .first-screen {
   display: flex;
   justify-content: space-between;
-
   padding-top: 16px;
 }
 
@@ -1371,12 +1370,6 @@ header {
   .contact-item {
     width: 47%;
   }
-
-  .svg-box {
-    min-width: 20px;
-    min-height: 20px;
-  }
-
   .contact-item-1 {
     order: 0;
   }
@@ -1639,6 +1632,9 @@ header {
     margin-bottom: 12px;
   }
 
+  .footer-adress {
+    max-width: 100%;
+  }
   .footer-logo .footer-text {
     max-width: 243px;
     font-size: 12px;
@@ -1654,6 +1650,7 @@ header {
   .footer-adress {
     margin-bottom: 24px;
   }
+  
 
   .catalog {
     padding-top: 0px;
