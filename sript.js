@@ -10,7 +10,7 @@ let imgContainer = document.querySelector(".lattice-img-box");
 burger.addEventListener("click", () => {
   burger.classList.toggle("open");
   header.classList.toggle("modal-open");
-  document.body.classList.toggle('noscroll')
+  document.body.classList.toggle("noscroll");
 });
 
 // Selection Size
@@ -64,12 +64,13 @@ imgContainer?.addEventListener("click", ({ target }) => {
   let bigImg = imgContainer.querySelector(".lattice-base-img");
   let lattiseLittleImages = document.querySelectorAll(".lattice-little-img");
 
+  lattiseLittleImages.forEach((image) =>
+    image.classList.remove("active-border")
+  );
 
-  lattiseLittleImages.forEach(image => image.classList.remove('active-border'))
-  
   if (target.closest(".lattice-little-img")) {
     bigImg.setAttribute("src", target.getAttribute("data-img"));
-    target.classList.add('active-border')
+    target.classList.add("active-border");
   }
 });
 
@@ -81,3 +82,5 @@ function setItemValue({ target }) {
     selectionValue.textContent = target.getAttribute("value");
   }
 }
+ 
+console.log(true);
